@@ -43,8 +43,14 @@ And thats it for getting the token.
 ### Gradle
 
 ```groovy
+//kotlin
 dependencies {
-    implementation("io.github.realyusufismail:jconfig:${project.version}")
+   implementation("io.github.realyusufismail:jconfig:${project.version}")
+}
+
+//groovy
+dependencies {
+   implementation "io.github.realyusufismail:jconfig:${project.version}"
 }
 ```
 
