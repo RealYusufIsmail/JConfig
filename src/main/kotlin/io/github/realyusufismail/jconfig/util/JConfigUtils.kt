@@ -18,11 +18,8 @@
  */ 
 package io.github.realyusufismail.jconfig.util
 
-import com.fasterxml.jackson.databind.node.*
 import io.github.realyusufismail.jconfig.JConfig.Companion.builder
-import io.github.realyusufismail.jconfig.classes.JConfigException
 
-// TODO: Might not work
 /** A utility class used to get values from the config file. */
 class JConfigUtils {
     companion object {
@@ -36,11 +33,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getString(key: String): String {
-            if (jConfig[key] is TextNode) {
-                return (jConfig[key] as TextNode).asText()
-            } else {
-                throw JConfigException("The value at the key $key is not a string.")
-            }
+            return jConfig[key].string
         }
 
         /**
@@ -53,11 +46,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getString(key: String, defaultValue: String): String {
-            return if (jConfig[key] is TextNode) {
-                (jConfig[key] as TextNode).asText()
-            } else {
-                defaultValue
-            }
+            return jConfig[key, defaultValue].string
         }
 
         /**
@@ -68,11 +57,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getInt(key: String): Int {
-            return if (jConfig[key] is IntNode) {
-                (jConfig[key] as IntNode).asInt()
-            } else {
-                throw JConfigException("The value at the key $key is not an integer.")
-            }
+            return jConfig[key].int
         }
 
         /**
@@ -84,11 +69,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getInt(key: String, defaultValue: Int): Int {
-            return if (jConfig[key] is IntNode) {
-                (jConfig[key] as IntNode).intValue()
-            } else {
-                defaultValue
-            }
+            return jConfig[key, defaultValue].int
         }
 
         /**
@@ -99,11 +80,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getBoolean(key: String): Boolean {
-            return if (jConfig[key] is BooleanNode) {
-                (jConfig[key] as BooleanNode).booleanValue()
-            } else {
-                throw JConfigException("The value at the key $key is not a boolean.")
-            }
+            return jConfig[key].boolean
         }
 
         /**
@@ -116,11 +93,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getBoolean(key: String, defaultValue: Boolean): Boolean {
-            return if (jConfig[key, defaultValue] is BooleanNode) {
-                (jConfig[key, defaultValue] as BooleanNode).booleanValue()
-            } else {
-                defaultValue
-            }
+            return jConfig[key, defaultValue].boolean
         }
 
         /**
@@ -131,11 +104,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getDouble(key: String): Double {
-            return if (jConfig[key] is DoubleNode) {
-                (jConfig[key] as DoubleNode).doubleValue()
-            } else {
-                throw JConfigException("The value at the key $key is not a double.")
-            }
+            return jConfig[key].double
         }
 
         /**
@@ -148,11 +117,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getDouble(key: String, defaultValue: Double): Double {
-            return if (jConfig[key] is DoubleNode) {
-                (jConfig[key] as DoubleNode).doubleValue()
-            } else {
-                defaultValue
-            }
+            return jConfig[key, defaultValue].double
         }
 
         /**
@@ -163,11 +128,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getLong(key: String): Long {
-            return if (jConfig[key] is LongNode) {
-                (jConfig[key] as LongNode).longValue()
-            } else {
-                throw JConfigException("The value at the key $key is not a long.")
-            }
+            return jConfig[key].long
         }
 
         /**
@@ -179,11 +140,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getLong(key: String, defaultValue: Long): Long {
-            return if (jConfig[key] is LongNode) {
-                (jConfig[key] as LongNode).longValue()
-            } else {
-                defaultValue
-            }
+            return jConfig[key, defaultValue].long
         }
 
         /**
@@ -194,11 +151,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getFloat(key: String): Float {
-            return if (jConfig[key] is FloatNode) {
-                (jConfig[key] as FloatNode).floatValue()
-            } else {
-                throw JConfigException("The value at the key $key is not a float.")
-            }
+            return jConfig[key].float
         }
 
         /**
@@ -210,11 +163,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getFloat(key: String, defaultValue: Float): Float {
-            return if (jConfig[key, defaultValue] is FloatNode) {
-                (jConfig[key, defaultValue] as FloatNode).floatValue()
-            } else {
-                defaultValue
-            }
+            return jConfig[key, defaultValue].float
         }
 
         /**
@@ -225,11 +174,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getListNode(key: String): List<*> {
-            return if (jConfig[key] is ArrayNode) {
-                (jConfig[key] as ArrayNode).toList()
-            } else {
-                throw JConfigException("The value at the key $key is not a list.")
-            }
+            return jConfig[key].list
         }
 
         /**
@@ -241,11 +186,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getListNode(key: String, defaultValue: List<*>): List<*> {
-            return if (jConfig[key, defaultValue] is ArrayNode) {
-                (jConfig[key, defaultValue] as ArrayNode).toList()
-            } else {
-                defaultValue
-            }
+            return jConfig[key, defaultValue].list
         }
 
         /**
@@ -256,11 +197,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getMapNode(key: String): Map<*, *> {
-            return if (jConfig[key] is ObjectNode) {
-                (jConfig[key] as ObjectNode).fields().asSequence().associate { it.key to it.value }
-            } else {
-                throw JConfigException("The value at the key $key is not a map.")
-            }
+            return jConfig[key].map
         }
 
         /**
@@ -272,13 +209,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getMapNode(key: String, defaultValue: Map<*, *>): Map<*, *> {
-            return if (jConfig[key, defaultValue] is ObjectNode) {
-                (jConfig[key, defaultValue] as ObjectNode).fields().asSequence().associate {
-                    it.key to it.value
-                }
-            } else {
-                defaultValue
-            }
+            return jConfig[key, defaultValue].map
         }
 
         /**
