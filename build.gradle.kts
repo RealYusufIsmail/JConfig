@@ -24,7 +24,7 @@ extra.apply {
     set("name", "JConfig")
     set("description", "Json Configurations used to store tokens and other sensitive data")
     set("group", "io.github.realyusufismail")
-    set("version", "1.0.3")
+    set("version", "1.0.4")
     set("dev_id", "yusuf")
     set("dev_name", "Yusuf Ismail")
     set("dev_email", "yusufgamer222@gmail.com")
@@ -37,7 +37,7 @@ extra.apply {
 }
 
 group = "io.github.realyusufismail"
-version = "1.0.3"
+version = "1.0.4"
 
 repositories {
     mavenCentral()

@@ -18,24 +18,38 @@
  */ 
 package io.github.realyusufismail.jconfig
 
-class JConfigImpl(entries: List<JsonEntry>) : JConfig {
+import java.math.BigDecimal
+import java.math.BigInteger
 
-    private var mapEntries: Map<String, Any> = HashMap()
-    private var jsonEntries: Set<JsonEntry> = HashSet()
+/** Used to get a value as a certain type. */
+interface JConfigObject {
+    var string: String
 
-    init {
-        this.mapEntries = JsonEntry.toMap(entries)
-        jsonEntries = this.mapEntries.map { JsonEntry(it.key, it.value) }.toSet()
-    }
+    var int: Int
 
-    override val entries: Set<JsonEntry>
-        get() = jsonEntries
+    var bigInt: BigInteger
 
-    override fun get(key: String): Any {
-        return mapEntries[key] ?: throw NoSuchElementException("No value present for key: $key")
-    }
+    var double: Double
 
-    override fun get(key: String, defaultValue: Any): Any {
-        return mapEntries[key] ?: defaultValue
-    }
+    var boolean: Boolean
+
+    var byte: Byte
+
+    var short: Short
+
+    var long: Long
+
+    var float: Float
+
+    var char: Char
+
+    var number: Number
+
+    var decimal: BigDecimal
+
+    var array: Array<JConfigObject>
+
+    var map: Map<String, JConfigObject>
+
+    var any: Any
 }
