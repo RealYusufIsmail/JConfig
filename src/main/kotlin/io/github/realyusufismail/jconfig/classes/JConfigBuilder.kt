@@ -16,9 +16,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.jconfig
+package io.github.realyusufismail.jconfig.classes
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.github.realyusufismail.jconfig.JConfig
 import java.io.File
 import java.io.IOException
 

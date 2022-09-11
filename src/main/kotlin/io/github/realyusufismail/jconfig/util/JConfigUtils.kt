@@ -16,11 +16,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */ 
-package io.github.realyusufismail.jconfig
+package io.github.realyusufismail.jconfig.util
 
 import com.fasterxml.jackson.databind.node.*
 import io.github.realyusufismail.jconfig.JConfig.Companion.builder
+import io.github.realyusufismail.jconfig.classes.JConfigException
 
+// TODO: Might not work
 /** A utility class used to get values from the config file. */
 class JConfigUtils {
     companion object {

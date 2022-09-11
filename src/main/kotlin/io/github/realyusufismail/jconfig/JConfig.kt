@@ -18,6 +18,9 @@
  */ 
 package io.github.realyusufismail.jconfig
 
+import io.github.realyusufismail.jconfig.classes.JConfigBuilder
+import io.github.realyusufismail.jconfig.classes.JsonEntry
+
 /** Used to get a value from the config.json file. Also creates a new JConfig instance. */
 interface JConfig {
     /**
@@ -33,7 +36,7 @@ interface JConfig {
      * @param key The key of the value.
      * @return The value of the key.
      */
-    operator fun get(key: String): Any
+    operator fun get(key: String): JConfigObject
 
     /**
      * Gets the value of the key from the config file.
@@ -42,7 +45,15 @@ interface JConfig {
      * @param defaultValue The default value to return if the key does not exist.
      * @return The value of the key.
      */
-    operator fun get(key: String, defaultValue: Any): Any
+    operator fun get(key: String, defaultValue: Any): JConfigObject
+
+    /**
+     * Used to check if the value is present
+     *
+     * @param key The key of the value.
+     * @return True if the value is present, false otherwise.
+     */
+    operator fun contains(key: String): Boolean
 
     companion object {
         /**
