@@ -1,5 +1,6 @@
 # Module jconfig
-
+![](https://github.com/RealYusufIsmail/JConfig/blob/master/logo.png)
+<br>
 JConfig is a simple library made to help with storing and retrieving data from a json file.
 
 ## Example
