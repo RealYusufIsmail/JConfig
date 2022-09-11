@@ -33,7 +33,11 @@ class JConfigUtils {
          * @return The value of the specified key.
          */
         fun getString(key: String): String {
-            return jConfig[key] as String
+            if (jConfig[key] is TextNode) {
+                return (jConfig[key] as TextNode).asText()
+            } else {
+                throw JConfigException("The value at the key $key is not a string.")
+            }
         }
 
         /**
@@ -45,7 +49,11 @@ class JConfigUtils {
          * @return The value as a String.
          */
         fun getString(key: String, defaultValue: String): String {
-            return jConfig[key, defaultValue] as String
+            return if (jConfig[key] is TextNode) {
+                (jConfig[key] as TextNode).asText()
+            } else {
+                defaultValue
+            }
         }
 
         /**
