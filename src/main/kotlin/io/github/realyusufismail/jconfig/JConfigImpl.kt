@@ -18,8 +18,6 @@
  */ 
 package io.github.realyusufismail.jconfig
 
-import java.util.stream.Collectors
-
 class JConfigImpl(entries: List<JsonEntry>) : JConfig {
 
     private var mapEntries: Map<String, Any> = HashMap()
@@ -27,11 +25,7 @@ class JConfigImpl(entries: List<JsonEntry>) : JConfig {
 
     init {
         this.mapEntries = JsonEntry.toMap(entries)
-        jsonEntries =
-            this.mapEntries.entries
-                .stream()
-                .map { entry: Map.Entry<String, Any> -> JsonEntry(entry.key, entry.value) }
-                .collect(Collectors.toSet())
+        jsonEntries = this.mapEntries.map { JsonEntry(it.key, it.value) }.toSet()
     }
 
     override val entries: Set<JsonEntry>

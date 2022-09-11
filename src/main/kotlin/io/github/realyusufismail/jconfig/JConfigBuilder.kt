@@ -22,9 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import java.io.File
 import java.io.IOException
 
-/**
- * Used to build a [JConfigBuilder] object.
- */
+/** Used to build a [JConfigBuilder] object. */
 class JConfigBuilder {
     private var filename = "config.json"
     private var directoryPath = "./"
