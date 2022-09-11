@@ -2,6 +2,8 @@
 
 JConfig is a simple library made to help with storing and retrieving data from a json file.
 
+Supporting both Kotlin and Java.
+
 ## Example
 
 For example, say you are making a discord bot and you want to store the token in a json file, you can do this:
