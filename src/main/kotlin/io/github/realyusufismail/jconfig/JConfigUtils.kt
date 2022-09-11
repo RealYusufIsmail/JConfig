@@ -32,6 +32,7 @@ class JConfigUtils {
          * @param key The key to get the value of.
          * @return The value of the specified key.
          */
+        @JvmStatic
         fun getString(key: String): String {
             if (jConfig[key] is TextNode) {
                 return (jConfig[key] as TextNode).asText()
@@ -48,6 +49,7 @@ class JConfigUtils {
          * @param defaultValue The default value to return if the value is not found.
          * @return The value as a String.
          */
+        @JvmStatic
         fun getString(key: String, defaultValue: String): String {
             return if (jConfig[key] is TextNode) {
                 (jConfig[key] as TextNode).asText()
@@ -62,6 +64,7 @@ class JConfigUtils {
          * @param key The key to get the value of.
          * @return The value of the specified key.
          */
+        @JvmStatic
         fun getInt(key: String): Int {
             return if (jConfig[key] is IntNode) {
                 (jConfig[key] as IntNode).asInt()
@@ -77,6 +80,7 @@ class JConfigUtils {
          * @param defaultValue The default value to return if the value is not found.
          * @return The value as an Int.
          */
+        @JvmStatic
         fun getInt(key: String, defaultValue: Int): Int {
             return if (jConfig[key] is IntNode) {
                 (jConfig[key] as IntNode).intValue()
@@ -91,6 +95,7 @@ class JConfigUtils {
          * @param key The key to get the value of.
          * @return The value of the specified key.
          */
+        @JvmStatic
         fun getBoolean(key: String): Boolean {
             return if (jConfig[key] is BooleanNode) {
                 (jConfig[key] as BooleanNode).booleanValue()
@@ -107,6 +112,7 @@ class JConfigUtils {
          * @param defaultValue The default value to return if the value is not found.
          * @return The value as a Boolean.
          */
+        @JvmStatic
         fun getBoolean(key: String, defaultValue: Boolean): Boolean {
             return if (jConfig[key, defaultValue] is BooleanNode) {
                 (jConfig[key, defaultValue] as BooleanNode).booleanValue()
@@ -121,6 +127,7 @@ class JConfigUtils {
          * @param key The key to get the value of.
          * @return The value of the specified key.
          */
+        @JvmStatic
         fun getDouble(key: String): Double {
             return if (jConfig[key] is DoubleNode) {
                 (jConfig[key] as DoubleNode).doubleValue()
@@ -137,6 +144,7 @@ class JConfigUtils {
          * @param defaultValue The default value to return if the value is not found.
          * @return The value as a Double.
          */
+        @JvmStatic
         fun getDouble(key: String, defaultValue: Double): Double {
             return if (jConfig[key] is DoubleNode) {
                 (jConfig[key] as DoubleNode).doubleValue()
@@ -151,6 +159,7 @@ class JConfigUtils {
          * @param key The key to get the value of.
          * @return The value of the specified key.
          */
+        @JvmStatic
         fun getLong(key: String): Long {
             return if (jConfig[key] is LongNode) {
                 (jConfig[key] as LongNode).longValue()
@@ -166,6 +175,7 @@ class JConfigUtils {
          * @param defaultValue The default value to return if the value is not found.
          * @return The value as a Long.
          */
+        @JvmStatic
         fun getLong(key: String, defaultValue: Long): Long {
             return if (jConfig[key] is LongNode) {
                 (jConfig[key] as LongNode).longValue()
@@ -180,6 +190,7 @@ class JConfigUtils {
          * @param key The key to get the value of.
          * @return The value of the specified key.
          */
+        @JvmStatic
         fun getFloat(key: String): Float {
             return if (jConfig[key] is FloatNode) {
                 (jConfig[key] as FloatNode).floatValue()
@@ -195,6 +206,7 @@ class JConfigUtils {
          * @param defaultValue The default value to return if the value is not found.
          * @return The value as a Float.
          */
+        @JvmStatic
         fun getFloat(key: String, defaultValue: Float): Float {
             return if (jConfig[key, defaultValue] is FloatNode) {
                 (jConfig[key, defaultValue] as FloatNode).floatValue()
@@ -209,6 +221,7 @@ class JConfigUtils {
          * @param key The key to get the value of.
          * @return The value as a List.
          */
+        @JvmStatic
         fun getListNode(key: String): List<*> {
             return if (jConfig[key] is ArrayNode) {
                 (jConfig[key] as ArrayNode).toList()
@@ -224,6 +237,7 @@ class JConfigUtils {
          * @param defaultValue The default value to return if the value is not found.
          * @return The value as a List.
          */
+        @JvmStatic
         fun getListNode(key: String, defaultValue: List<*>): List<*> {
             return if (jConfig[key, defaultValue] is ArrayNode) {
                 (jConfig[key, defaultValue] as ArrayNode).toList()
@@ -238,6 +252,7 @@ class JConfigUtils {
          * @param key The key to get the value of.
          * @return The value as a Map.
          */
+        @JvmStatic
         fun getMapNode(key: String): Map<*, *> {
             return if (jConfig[key] is ObjectNode) {
                 (jConfig[key] as ObjectNode).fields().asSequence().associate { it.key to it.value }
@@ -253,6 +268,7 @@ class JConfigUtils {
          * @param defaultValue The default value to return if the value is not found.
          * @return The value as a Map.
          */
+        @JvmStatic
         fun getMapNode(key: String, defaultValue: Map<*, *>): Map<*, *> {
             return if (jConfig[key, defaultValue] is ObjectNode) {
                 (jConfig[key, defaultValue] as ObjectNode).fields().asSequence().associate {
@@ -269,6 +285,7 @@ class JConfigUtils {
          * @param key The key to get the value of.
          * @return The value of the specified key.
          */
+        @JvmStatic
         operator fun get(key: String): Any {
             return jConfig[key]
         }
@@ -280,6 +297,7 @@ class JConfigUtils {
          * @param defaultValue The default value to return if the value is not found.
          * @return The value as an Any.
          */
+        @JvmStatic
         operator fun get(key: String, defaultValue: Any): Any {
             return jConfig[key, defaultValue]
         }
