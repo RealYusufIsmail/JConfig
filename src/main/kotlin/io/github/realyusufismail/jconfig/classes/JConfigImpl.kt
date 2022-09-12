@@ -57,17 +57,19 @@ class JConfigImpl(entries: List<JsonEntry>) : JConfig {
                 value.isObject ->
                     JConfigObjectImpl(
                         value.fields().asSequence().map { it.key to it.value.asText() }.toMap())
-                else -> throw IllegalArgumentException("Unknown type: ${value.javaClass}")
+                value.isNull -> throw JConfigException("The value of the key $key is null")
+                else ->
+                    throw JConfigException("The key $key is not a valid type or is not supported")
             }
         } else {
-            throw IllegalArgumentException("Unknown type: ${value.javaClass}")
+            throw JConfigException("Unknown type: ${value.javaClass}")
         }
     }
 
     override fun get(key: String, defaultValue: Any): JConfigObject {
-        return try {
+        return if (mapEntries.containsKey(key)) {
             get(key)
-        } catch (e: NoSuchElementException) {
+        } else {
             JConfigObjectImpl(defaultValue)
         }
     }

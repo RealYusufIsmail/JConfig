@@ -33,7 +33,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getString(key: String): String {
-            return jConfig[key].string
+            return jConfig[key].asString
         }
 
         /**
@@ -46,7 +46,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getString(key: String, defaultValue: String): String {
-            return jConfig[key, defaultValue].string
+            return jConfig[key, defaultValue].asString
         }
 
         /**
@@ -57,7 +57,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getInt(key: String): Int {
-            return jConfig[key].int
+            return jConfig[key].asInt
         }
 
         /**
@@ -69,7 +69,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getInt(key: String, defaultValue: Int): Int {
-            return jConfig[key, defaultValue].int
+            return jConfig[key, defaultValue].asInt
         }
 
         /**
@@ -80,7 +80,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getBoolean(key: String): Boolean {
-            return jConfig[key].boolean
+            return jConfig[key].asBoolean
         }
 
         /**
@@ -93,7 +93,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getBoolean(key: String, defaultValue: Boolean): Boolean {
-            return jConfig[key, defaultValue].boolean
+            return jConfig[key, defaultValue].asBoolean
         }
 
         /**
@@ -104,7 +104,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getDouble(key: String): Double {
-            return jConfig[key].double
+            return jConfig[key].asDouble
         }
 
         /**
@@ -117,7 +117,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getDouble(key: String, defaultValue: Double): Double {
-            return jConfig[key, defaultValue].double
+            return jConfig[key, defaultValue].asDouble
         }
 
         /**
@@ -128,7 +128,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getLong(key: String): Long {
-            return jConfig[key].long
+            return jConfig[key].asLong
         }
 
         /**
@@ -140,7 +140,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getLong(key: String, defaultValue: Long): Long {
-            return jConfig[key, defaultValue].long
+            return jConfig[key, defaultValue].asLong
         }
 
         /**
@@ -151,7 +151,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getFloat(key: String): Float {
-            return jConfig[key].float
+            return jConfig[key].asFloat
         }
 
         /**
@@ -163,7 +163,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getFloat(key: String, defaultValue: Float): Float {
-            return jConfig[key, defaultValue].float
+            return jConfig[key, defaultValue].asFloat
         }
 
         /**
@@ -174,7 +174,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getListNode(key: String): List<*> {
-            return jConfig[key].list
+            return jConfig[key].asList
         }
 
         /**
@@ -186,7 +186,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getListNode(key: String, defaultValue: List<*>): List<*> {
-            return jConfig[key, defaultValue].list
+            return jConfig[key, defaultValue].asList
         }
 
         /**
@@ -197,7 +197,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getMapNode(key: String): Map<*, *> {
-            return jConfig[key].map
+            return jConfig[key].asMap
         }
 
         /**
@@ -209,7 +209,7 @@ class JConfigUtils {
          */
         @JvmStatic
         fun getMapNode(key: String, defaultValue: Map<*, *>): Map<*, *> {
-            return jConfig[key, defaultValue].map
+            return jConfig[key, defaultValue].asMap
         }
 
         /**
@@ -220,7 +220,7 @@ class JConfigUtils {
          */
         @JvmStatic
         operator fun get(key: String): Any {
-            return jConfig[key]
+            return jConfig[key].asAny
         }
 
         /**
@@ -232,7 +232,7 @@ class JConfigUtils {
          */
         @JvmStatic
         operator fun get(key: String, defaultValue: Any): Any {
-            return jConfig[key, defaultValue]
+            return jConfig[key, defaultValue].asAny
         }
     }
 }

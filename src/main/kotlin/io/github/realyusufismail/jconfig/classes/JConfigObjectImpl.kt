@@ -24,7 +24,7 @@ import java.math.BigInteger
 
 class JConfigObjectImpl(private val value: Any) : JConfigObject {
 
-    override val string: String
+    override val asString: String
         get() {
             if (value is String) {
                 return value
@@ -33,7 +33,7 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val int: Int
+    override val asInt: Int
         get() {
             if (value is Int) {
                 return value
@@ -42,7 +42,7 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val bigInt: BigInteger
+    override val asBigInt: BigInteger
         get() {
             if (value is BigInteger) {
                 return value
@@ -51,7 +51,7 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val double: Double
+    override val asDouble: Double
         get() {
             if (value is Double) {
                 return value
@@ -60,7 +60,7 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val boolean: Boolean
+    override val asBoolean: Boolean
         get() {
             if (value is Boolean) {
                 return value
@@ -69,7 +69,7 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val byte: Byte
+    override val asByte: Byte
         get() {
             if (value is Byte) {
                 return value
@@ -78,7 +78,7 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val short: Short
+    override val asShort: Short
         get() {
             if (value is Short) {
                 return value
@@ -87,7 +87,7 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val long: Long
+    override val asLong: Long
         get() {
             if (value is Long) {
                 return value
@@ -96,7 +96,7 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val float: Float
+    override val asFloat: Float
         get() {
             if (value is Float) {
                 return value
@@ -105,7 +105,7 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val char: Char
+    override val asChar: Char
         get() {
             if (value is Char) {
                 return value
@@ -114,7 +114,7 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val number: Number
+    override val asNumber: Number
         get() {
             if (value is Number) {
                 return value
@@ -123,7 +123,7 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val decimal: BigDecimal
+    override val asDecimal: BigDecimal
         get() {
             if (value is BigDecimal) {
                 return value
@@ -132,7 +132,7 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val array: Array<JConfigObject>
+    override val asArray: Array<JConfigObject>
         get() {
             if (value is Array<*>) {
                 return value
@@ -143,7 +143,7 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val list: List<JConfigObject>
+    override val asList: List<JConfigObject>
         get() {
             if (value is List<*>) {
                 return value.map {
@@ -154,7 +154,7 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val map: Map<String, JConfigObject>
+    override val asMap: Map<String, JConfigObject>
         get() {
             if (value is Map<*, *>) {
                 return value
@@ -169,7 +169,7 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val any: Any
+    override val asAny: Any
         get() {
             return value
         }

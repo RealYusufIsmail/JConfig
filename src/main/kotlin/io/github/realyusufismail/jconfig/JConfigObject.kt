@@ -24,50 +24,50 @@ import java.math.BigInteger
 /** Used to get a value as a certain type. */
 interface JConfigObject {
     /** Get the value as a [String]. */
-    val string: String
+    val asString: String
 
     /** Get the value as an [Int]. */
-    val int: Int
+    val asInt: Int
 
     /** Get the value as a [BigInteger]. */
-    val bigInt: BigInteger
+    val asBigInt: BigInteger
 
     /** Get the value as a [Double]. */
-    val double: Double
+    val asDouble: Double
 
     /** Get the value as a [Boolean]. */
-    val boolean: Boolean
+    val asBoolean: Boolean
 
     /** Get the value as a [Byte]. */
-    val byte: Byte
+    val asByte: Byte
 
     /** Get the value as a [Short]. */
-    val short: Short
+    val asShort: Short
 
     /** Get the value as a [Long]. */
-    val long: Long
+    val asLong: Long
 
     /** Get the value as a [Float]. */
-    val float: Float
+    val asFloat: Float
 
     /** Get the value as a [Char]. */
-    val char: Char
+    val asChar: Char
 
     /** Get the value as a [Number]. */
-    val number: Number
+    val asNumber: Number
 
     /** Get the value as a [BigDecimal]. */
-    val decimal: BigDecimal
+    val asDecimal: BigDecimal
 
     /** Get the value as an [Array]. */
-    val array: Array<JConfigObject>
+    val asArray: Array<JConfigObject>
 
     /** Get the value as a [List]. */
-    val list: List<JConfigObject>
+    val asList: List<JConfigObject>
 
     /** Get the value as a [Map]. */
-    val map: Map<String, JConfigObject>
+    val asMap: Map<String, JConfigObject>
 
     /** Get the value as an [Any]. */
-    val any: Any
+    val asAny: Any
 }

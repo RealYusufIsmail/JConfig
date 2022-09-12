@@ -49,7 +49,7 @@ class JsonEntry
 ) {
 
     override fun toString(): String {
-        return "JsonEntry{key='$key', value=$value}"
+        return "{key: $key, value: $value}"
     }
 
     override fun equals(other: Any?): Boolean {
