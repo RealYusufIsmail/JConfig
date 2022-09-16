@@ -5,9 +5,7 @@
 
 # JConfig
 
-JConfig is a simple library made to help with storing and retrieving data from a json file. 
-
-Supporting both Kotlin and Java.
+JConfig is a simple library made to help with storing and retrieving data from a json file in Java and Kotlin.
 
 ## Example
 
