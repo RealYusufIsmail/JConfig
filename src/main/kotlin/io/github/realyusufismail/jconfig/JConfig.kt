@@ -20,6 +20,7 @@ package io.github.realyusufismail.jconfig
 
 import io.github.realyusufismail.jconfig.classes.JConfigBuilder
 import io.github.realyusufismail.jconfig.classes.JsonEntry
+import io.github.realyusufismail.jconfig.util.NullChecker
 
 /** Used to get a value from the config.json file. Also creates a new JConfig instance. */
 interface JConfig {
@@ -36,7 +37,7 @@ interface JConfig {
      * @param key The key of the value.
      * @return The value of the key.
      */
-    operator fun get(key: String): JConfigObject
+    operator fun get(key: String): NullChecker<JConfigObject>
 
     /**
      * Gets the value of the key from the config file.
@@ -45,7 +46,25 @@ interface JConfig {
      * @param defaultValue The default value to return if the key does not exist.
      * @return The value of the key.
      */
-    operator fun get(key: String, defaultValue: Any): JConfigObject
+    operator fun get(key: String, defaultValue: Any): NullChecker<JConfigObject>
+
+    /**
+     * Used to set a value in the config file.
+     *
+     * @param key The key of the value.
+     * @param value The value to set.
+     * @return The value of the key.
+     */
+    operator fun set(key: String, value: Any)
+
+    /**
+     * Used to set a value in the config file.
+     *
+     * @param key The key of the value.
+     * @param value The value to set.
+     * @return The value of the key.
+     */
+    operator fun set(key: String, value: JConfigObject)
 
     /**
      * Used to check if the value is present

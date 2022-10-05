@@ -18,6 +18,8 @@
  */ 
 package io.github.realyusufismail.jconfig.util
 
+import io.github.realyusufismail.jconfig.classes.JConfigException
+
 /**
  * Based on java 8's Optional, but with some changes. Used to check if a value is present or not.
  */
@@ -63,18 +65,16 @@ class NullChecker<T>(private val value: T) {
     }
 
     /**
-     * If a value is present, returns the value, otherwise throws
-     * `NoSuchElementException`.
+     * If a value is present, returns the value, otherwise throws `NoSuchElementException`.
      *
-     * @apiNote
-     * The preferred alternative to this method is [.orElseThrow].
+     * @apiNote The preferred alternative to this method is [.orElseThrow].
      *
      * @return the non-`null` value described by this `Optional`
-     * @throws NoSuchElementException if no value is present
+     * @throws JConfigException if there is no value present
      */
     fun get(): T {
         if (value == null) {
-            throw NoSuchElementException("No value present")
+            throw JConfigException("No value present")
         }
         return value
     }
