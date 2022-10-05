@@ -35,7 +35,7 @@ class JConfigImpl(entries: List<JsonEntry>) : JConfig {
     override val entries: Set<JsonEntry>
         get() = jsonEntries
 
-    override fun get(key: String): JConfigObject {
+    override fun get(key: String): JConfigObject? {
         // mapEntries[key] ?: throw NoSuchElementException("No value present for key: $key")
 
         val value =
@@ -57,21 +57,28 @@ class JConfigImpl(entries: List<JsonEntry>) : JConfig {
                 value.isObject ->
                     JConfigObjectImpl(
                         value.fields().asSequence().map { it.key to it.value.asText() }.toMap())
-                value.isNull -> throw JConfigException("The value of the key $key is null")
-                else ->
-                    throw JConfigException("The key $key is not a valid type or is not supported")
+                value.isNull -> null
+                else -> throw IllegalStateException("Unknown type: ${value::class.java}")
             }
         } else {
             throw JConfigException("Unknown type: ${value.javaClass}")
         }
     }
 
-    override fun get(key: String, defaultValue: Any): JConfigObject {
+    override fun get(key: String, defaultValue: Any): JConfigObject? {
         return if (mapEntries.containsKey(key)) {
             get(key)
         } else {
             JConfigObjectImpl(defaultValue)
         }
+    }
+
+    override fun set(key: String, value: Any) {
+        mapEntries = mapEntries.toMutableMap().apply { put(key, value) }.toMap()
+    }
+
+    override fun set(key: String, value: JConfigObject) {
+        mapEntries = mapEntries.toMutableMap().apply { put(key, value) }.toMap()
     }
 
     override fun contains(key: String): Boolean {
