@@ -24,7 +24,8 @@ import kotlin.test.assertNotNull
 import org.junit.jupiter.api.Test
 
 class JsonTest {
-    private val jConfig = JConfig.builder().setDirectoryPath(File("src/test/resources")).build()
+    private val jConfig =
+        JConfig.builder().setFilename("test").setDirectoryPath(File("src/test/resources")).build()
 
     @Test
     fun test() {

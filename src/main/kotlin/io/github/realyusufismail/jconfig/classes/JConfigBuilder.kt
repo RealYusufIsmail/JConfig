@@ -53,9 +53,14 @@ class JConfigBuilder {
         } else if (!File(directoryPath, filename).exists()) {
             throw JConfigException("File does not exist!")
         }
-
         if (!filename.endsWith(extension)) {
             throw JConfigException("JConfig only supports JSON files!")
+        }
+
+        // need to check if path ends with / if not add it
+
+        if (!directoryPath.endsWith("/")) {
+            directoryPath += "/"
         }
 
         val json = File(directoryPath + filename)
