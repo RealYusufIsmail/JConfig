@@ -21,7 +21,6 @@ package io.github.realyusufismail.jconfig.classes
 import com.fasterxml.jackson.databind.JsonNode
 import io.github.realyusufismail.jconfig.JConfig
 import io.github.realyusufismail.jconfig.JConfigObject
-import io.github.realyusufismail.jconfig.util.NullChecker
 
 class JConfigImpl(entries: List<JsonEntry>) : JConfig {
 
@@ -36,7 +35,7 @@ class JConfigImpl(entries: List<JsonEntry>) : JConfig {
     override val entries: Set<JsonEntry>
         get() = jsonEntries
 
-    override fun get(key: String): NullChecker<JConfigObject> {
+    override fun get(key: String): JConfigObject? {
         // mapEntries[key] ?: throw NoSuchElementException("No value present for key: $key")
 
         val value =
@@ -44,39 +43,33 @@ class JConfigImpl(entries: List<JsonEntry>) : JConfig {
 
         if (value is JsonNode) {
             return when {
-                value.isInt -> NullChecker(JConfigObjectImpl(value.asInt()))
-                value.isLong -> NullChecker(JConfigObjectImpl(value.asLong()))
-                value.isDouble -> NullChecker(JConfigObjectImpl(value.asDouble()))
-                value.isBoolean -> NullChecker(JConfigObjectImpl(value.asBoolean()))
-                value.isTextual -> NullChecker(JConfigObjectImpl(value.asText()))
-                value.isArray -> NullChecker(JConfigObjectImpl(value.map { it.asText() }))
-                value.isBigDecimal -> NullChecker(JConfigObjectImpl(value.decimalValue()))
-                value.isBigInteger -> NullChecker(JConfigObjectImpl(value.bigIntegerValue()))
-                value.isFloat -> NullChecker(JConfigObjectImpl(value.floatValue()))
-                value.isShort -> NullChecker(JConfigObjectImpl(value.shortValue()))
-                value.isBinary -> NullChecker(JConfigObjectImpl(value.binaryValue()))
+                value.isInt -> JConfigObjectImpl(value.asInt())
+                value.isLong -> JConfigObjectImpl(value.asLong())
+                value.isDouble -> JConfigObjectImpl(value.asDouble())
+                value.isBoolean -> JConfigObjectImpl(value.asBoolean())
+                value.isTextual -> JConfigObjectImpl(value.asText())
+                value.isArray -> JConfigObjectImpl(value.map { it.asText() })
+                value.isBigDecimal -> JConfigObjectImpl(value.decimalValue())
+                value.isBigInteger -> JConfigObjectImpl(value.bigIntegerValue())
+                value.isFloat -> JConfigObjectImpl(value.floatValue())
+                value.isShort -> JConfigObjectImpl(value.shortValue())
+                value.isBinary -> JConfigObjectImpl(value.binaryValue())
                 value.isObject ->
-                    NullChecker(
-                        JConfigObjectImpl(
-                            value
-                                .fields()
-                                .asSequence()
-                                .map { it.key to it.value.asText() }
-                                .toMap()))
-                value.isNull -> throw JConfigException("The value of the key $key is null")
-                else ->
-                    throw JConfigException("The key $key is not a valid type or is not supported")
+                    JConfigObjectImpl(
+                        value.fields().asSequence().map { it.key to it.value.asText() }.toMap())
+                value.isNull -> null
+                else -> throw IllegalStateException("Unknown type: ${value::class.java}")
             }
         } else {
             throw JConfigException("Unknown type: ${value.javaClass}")
         }
     }
 
-    override fun get(key: String, defaultValue: Any): NullChecker<JConfigObject> {
+    override fun get(key: String, defaultValue: Any): JConfigObject? {
         return if (mapEntries.containsKey(key)) {
             get(key)
         } else {
-            NullChecker(JConfigObjectImpl(defaultValue))
+            JConfigObjectImpl(defaultValue)
         }
     }
 
