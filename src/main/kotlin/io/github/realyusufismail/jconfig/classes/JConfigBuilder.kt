@@ -25,11 +25,12 @@ import java.io.IOException
 
 /** Used to build a [JConfigBuilder] object. */
 class JConfigBuilder {
-    private var filename = "config.json"
+    private var extension = ".json"
+    private var filename = "config$extension"
     private var directoryPath = "./"
 
     fun setFilename(filename: String): JConfigBuilder {
-        this.filename = filename
+        this.filename = filename + extension
         return this
     }
 
@@ -38,9 +39,25 @@ class JConfigBuilder {
         return this
     }
 
+    fun setDirectoryPath(directoryPath: File): JConfigBuilder {
+        this.directoryPath = directoryPath.absolutePath
+        return this
+    }
+
     @Throws(JConfigException::class)
     fun build(): JConfig {
         val mapper = ObjectMapper()
+
+        if (!File(directoryPath).exists()) {
+            throw JConfigException("Directory path does not exist!")
+        } else if (!File(directoryPath, filename).exists()) {
+            throw JConfigException("File does not exist!")
+        }
+
+        if (!filename.endsWith(extension)) {
+            throw JConfigException("JConfig only supports JSON files!")
+        }
+
         val json = File(directoryPath + filename)
         return try {
             val root = mapper.readTree(json)
