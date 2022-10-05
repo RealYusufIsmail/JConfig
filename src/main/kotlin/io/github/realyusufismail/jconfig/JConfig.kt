@@ -45,25 +45,7 @@ interface JConfig {
      * @param defaultValue The default value to return if the key does not exist.
      * @return The value of the key.
      */
-    operator fun get(key: String, defaultValue: Any): JConfigObject?
-
-    /**
-     * Used to set a value in the config file.
-     *
-     * @param key The key of the value.
-     * @param value The value to set.
-     * @return The value of the key.
-     */
-    operator fun set(key: String, value: Any)
-
-    /**
-     * Used to set a value in the config file.
-     *
-     * @param key The key of the value.
-     * @param value The value to set.
-     * @return The value of the key.
-     */
-    operator fun set(key: String, value: JConfigObject)
+    operator fun get(key: String, defaultValue: Any): JConfigObject
 
     /**
      * Used to set a value in the config file.
