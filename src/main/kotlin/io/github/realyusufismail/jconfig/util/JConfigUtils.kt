@@ -32,8 +32,8 @@ class JConfigUtils {
          * @return The value of the specified key.
          */
         @JvmStatic
-        fun getString(key: String): String {
-            return jConfig[key].asString
+        fun getString(key: String): String? {
+            return jConfig[key]?.asString
         }
 
         /**
@@ -56,8 +56,8 @@ class JConfigUtils {
          * @return The value of the specified key.
          */
         @JvmStatic
-        fun getInt(key: String): Int {
-            return jConfig[key].asInt
+        fun getInt(key: String): Int? {
+            return jConfig[key]?.asInt
         }
 
         /**
@@ -79,8 +79,8 @@ class JConfigUtils {
          * @return The value of the specified key.
          */
         @JvmStatic
-        fun getBoolean(key: String): Boolean {
-            return jConfig[key].asBoolean
+        fun getBoolean(key: String): Boolean? {
+            return jConfig[key]?.asBoolean
         }
 
         /**
@@ -103,8 +103,8 @@ class JConfigUtils {
          * @return The value of the specified key.
          */
         @JvmStatic
-        fun getDouble(key: String): Double {
-            return jConfig[key].asDouble
+        fun getDouble(key: String): Double? {
+            return jConfig[key]?.asDouble
         }
 
         /**
@@ -127,8 +127,8 @@ class JConfigUtils {
          * @return The value of the specified key.
          */
         @JvmStatic
-        fun getLong(key: String): Long {
-            return jConfig[key].asLong
+        fun getLong(key: String): Long? {
+            return jConfig[key]?.asLong
         }
 
         /**
@@ -150,8 +150,8 @@ class JConfigUtils {
          * @return The value of the specified key.
          */
         @JvmStatic
-        fun getFloat(key: String): Float {
-            return jConfig[key].asFloat
+        fun getFloat(key: String): Float? {
+            return jConfig[key]?.asFloat
         }
 
         /**
@@ -173,8 +173,8 @@ class JConfigUtils {
          * @return The value as a List.
          */
         @JvmStatic
-        fun getListNode(key: String): List<*> {
-            return jConfig[key].asList
+        fun getListNode(key: String): List<*>? {
+            return jConfig[key]?.asList
         }
 
         /**
@@ -196,8 +196,8 @@ class JConfigUtils {
          * @return The value as a Map.
          */
         @JvmStatic
-        fun getMapNode(key: String): Map<*, *> {
-            return jConfig[key].asMap
+        fun getMapNode(key: String): Map<*, *>? {
+            return jConfig[key]?.asMap
         }
 
         /**
@@ -219,8 +219,8 @@ class JConfigUtils {
          * @return The value of the specified key.
          */
         @JvmStatic
-        operator fun get(key: String): Any {
-            return jConfig[key].asAny
+        operator fun get(key: String): Any? {
+            return jConfig[key]?.asAny
         }
 
         /**

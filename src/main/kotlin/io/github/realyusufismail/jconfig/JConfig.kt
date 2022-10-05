@@ -36,7 +36,7 @@ interface JConfig {
      * @param key The key of the value.
      * @return The value of the key.
      */
-    operator fun get(key: String): JConfigObject
+    operator fun get(key: String): JConfigObject?
 
     /**
      * Gets the value of the key from the config file.
@@ -46,6 +46,24 @@ interface JConfig {
      * @return The value of the key.
      */
     operator fun get(key: String, defaultValue: Any): JConfigObject
+
+    /**
+     * Used to set a value in the config file.
+     *
+     * @param key The key of the value.
+     * @param value The value to set.
+     * @return The value of the key.
+     */
+    operator fun set(key: String, value: Any)
+
+    /**
+     * Used to set a value in the config file.
+     *
+     * @param key The key of the value.
+     * @param value The value to set.
+     * @return The value of the key.
+     */
+    operator fun set(key: String, value: JConfigObject)
 
     /**
      * Used to check if the value is present
