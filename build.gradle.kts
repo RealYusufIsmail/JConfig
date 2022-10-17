@@ -6,7 +6,7 @@ import java.net.URL
 
 buildscript {
     dependencies {
-        classpath("org.jetbrains.dokka:dokka-base:1.7.10")
+        classpath("org.jetbrains.dokka:dokka-base:1.7.20")
     }
 }
 
