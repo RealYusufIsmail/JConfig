@@ -45,7 +45,7 @@ repositories {
 
 dependencies {
     //json
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.4")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.0")
     testImplementation(kotlin("test"))
 }
 
