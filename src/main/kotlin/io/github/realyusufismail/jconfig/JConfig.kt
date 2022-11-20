@@ -19,6 +19,7 @@
 package io.github.realyusufismail.jconfig
 
 import io.github.realyusufismail.jconfig.classes.JConfigBuilder
+import io.github.realyusufismail.jconfig.classes.JConfigException
 import io.github.realyusufismail.jconfig.classes.JsonEntry
 
 /** Used to get a value from the config.json file. Also creates a new JConfig instance. */
@@ -90,6 +91,8 @@ interface JConfig {
          * @return A new JConfigBuilder instance.
          * @throws JConfigException If an error occurs while trying to read the config file.
          */
+        @JvmStatic
+        @Throws(JConfigException::class)
         fun build(): JConfig {
             return JConfigBuilder().build()
         }

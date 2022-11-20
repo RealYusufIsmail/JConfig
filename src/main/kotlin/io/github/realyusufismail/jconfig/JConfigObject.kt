@@ -18,56 +18,121 @@
  */ 
 package io.github.realyusufismail.jconfig
 
+import io.github.realyusufismail.jconfig.classes.JsonEntry
 import java.math.BigDecimal
 import java.math.BigInteger
 
 /** Used to get a value as a certain type. */
 interface JConfigObject {
-    /** Get the value as a [String]. */
+    /**
+     * Get the value as a [String].
+     *
+     * @return The value as a [String].
+     */
     val asString: String
 
-    /** Get the value as an [Int]. */
+    /**
+     * Get the value as a [Int].
+     *
+     * @return The value as a [Int].
+     */
     val asInt: Int
 
-    /** Get the value as a [BigInteger]. */
+    /**
+     * Get the value as a [BigInteger].
+     *
+     * @return The value as a [BigInteger].
+     */
     val asBigInt: BigInteger
 
-    /** Get the value as a [Double]. */
+    /**
+     * Get the value as a [Double].
+     *
+     * @return The value as a [Double].
+     */
     val asDouble: Double
 
-    /** Get the value as a [Boolean]. */
+    /**
+     * Get the value as a [Boolean].
+     *
+     * @return The value as a [Boolean].
+     */
     val asBoolean: Boolean
 
-    /** Get the value as a [Byte]. */
+    /**
+     * Get the value as a [Byte].
+     *
+     * @return The value as a [Byte].
+     */
     val asByte: Byte
 
-    /** Get the value as a [Short]. */
+    /**
+     * Get the value as a [Short].
+     *
+     * @return The value as a [Short].
+     */
     val asShort: Short
 
-    /** Get the value as a [Long]. */
+    /**
+     * Get the value as a [Long].
+     *
+     * @return The value as a [Long].
+     */
     val asLong: Long
 
-    /** Get the value as a [Float]. */
+    /**
+     * Get the value as a [Float].
+     *
+     * @return The value as a [Float].
+     */
     val asFloat: Float
 
-    /** Get the value as a [Char]. */
+    /**
+     * Get the value as a [BigDecimal].
+     *
+     * @return The value as a [BigDecimal].
+     */
     val asChar: Char
 
-    /** Get the value as a [Number]. */
+    /**
+     * Get the value as a [BigDecimal].
+     *
+     * @return The value as a [BigDecimal].
+     */
     val asNumber: Number
 
-    /** Get the value as a [BigDecimal]. */
+    /**
+     * Get the value as a [BigDecimal].
+     *
+     * @return The value as a [BigDecimal].
+     */
     val asDecimal: BigDecimal
 
-    /** Get the value as an [Array]. */
+    /**
+     * Get the value as an [Array] of [JConfigObject].
+     *
+     * @return The value as an [Array] of [JConfigObject].
+     */
     val asArray: Array<JConfigObject>
 
-    /** Get the value as a [List]. */
+    /**
+     * Get the value as a [List] of [JConfigObject].
+     *
+     * @return The value as a [List] of [JConfigObject].
+     */
     val asList: List<JConfigObject>
 
-    /** Get the value as a [Map]. */
+    /**
+     * Get the value as a [Map] of [String] and [JConfigObject].
+     *
+     * @return The value as a [Map] of [String] and [JConfigObject].
+     */
     val asMap: Map<String, JConfigObject>
 
-    /** Get the value as an [Any]. */
-    val asAny: Any
+    /**
+     * Get the value as a [JsonEntry].
+     *
+     * @return The value as a [JsonEntry].
+     */
+    val asJsonEntry: JsonEntry
 }

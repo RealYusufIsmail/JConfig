@@ -76,7 +76,7 @@ class JConfigImpl(entries: List<JsonEntry>) : JConfig {
     }
 
     override fun set(key: String, value: JConfigObject) {
-        set(key, value.asAny)
+        set(key, value.asJsonEntry)
     }
 
     override fun contains(key: String): Boolean {
