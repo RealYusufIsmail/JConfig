@@ -169,8 +169,6 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
             }
         }
 
-    override val asAny: Any
-        get() {
-            return value
-        }
+    override val asJsonEntry: JsonEntry
+        get() = value as JsonEntry
 }

@@ -19,6 +19,7 @@
 package io.github.realyusufismail.jconfig.util
 
 import io.github.realyusufismail.jconfig.JConfig.Companion.builder
+import io.github.realyusufismail.jconfig.classes.JsonEntry
 
 /** A utility class used to get values from the config file. */
 class JConfigUtils {
@@ -219,8 +220,8 @@ class JConfigUtils {
          * @return The value of the specified key.
          */
         @JvmStatic
-        operator fun get(key: String): Any? {
-            return jConfig[key]?.asAny
+        operator fun get(key: String): JsonEntry? {
+            return jConfig[key]?.asJsonEntry
         }
 
         /**
@@ -231,8 +232,8 @@ class JConfigUtils {
          * @return The value as an Any.
          */
         @JvmStatic
-        operator fun get(key: String, defaultValue: Any): Any {
-            return jConfig[key, defaultValue].asAny
+        operator fun get(key: String, defaultValue: Any): JsonEntry {
+            return jConfig[key, defaultValue].asJsonEntry
         }
     }
 }

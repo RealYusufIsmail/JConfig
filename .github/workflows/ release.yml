@@ -1,0 +1,34 @@
+# Whenever a commit is pushed with a non-snapshot version (no "-SNAPSHOT" suffix), this job will create a new
+# GitHub release. Additionally, it will increment the version by one patch level, append a "-SNAPSHOT" suffix, and
+# commit + push it to release branch (e.g., "0.0.2" -> "0.0.3-SNAPSHOT").
+# Automatically merge release PR
+name: Release and Update
+on:
+  push:
+    branches:
+      - 'master'
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Read Version
+        id: read-version
+        run: |
+          version=`cat gradle.properties | sed -n "s/^.*version\s*=\s*\(\S*\).*$/\1/p"`
+          echo "::set-output name=version::$version"
+      - name: Create Release
+        if: ${{ !endsWith(steps.read-version.outputs.version, 'SNAPSHOT') }}
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.read-version.outputs.version }}
+          release_name: v${{ steps.read-version.outputs.version }}
+          body: |
+            Version ${{ steps.read-version.outputs.version }}
+          draft: true
+          prerelease: false
