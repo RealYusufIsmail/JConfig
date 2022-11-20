@@ -1,6 +1,6 @@
 ![](https://github.com/RealYusufIsmail/JConfig/blob/master/logo.png)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Kotlin](https://img.shields.io/badge/kotlin-1.7.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/kotlin-1.7.21-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.realyusufismail/jconfig/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.realyusufismail/jconfig)
 
 # JConfig
@@ -37,7 +37,7 @@ And thats it for getting the token.
 <dependency>
     <groupId>io.github.realyusufismail</groupId>
     <artifactId>jconfig</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
 </dependency>
 ```
 
@@ -46,12 +46,12 @@ And thats it for getting the token.
 ```groovy
 //kotlin
 dependencies {
-   implementation("io.github.realyusufismail:jconfig:1.0.7")
+   implementation("io.github.realyusufismail:jconfig:1.0.8")
 }
 
 //groovy
 dependencies {
-   implementation "io.github.realyusufismail:jconfig:1.0.7"
+   implementation "io.github.realyusufismail:jconfig:1.0.8"
 }
 ```
 
