@@ -7,7 +7,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 buildscript { dependencies { classpath("org.jetbrains.dokka:dokka-base:1.7.20") } }
 
 plugins {
-    kotlin("jvm") version "1.7.21"
+    kotlin("jvm") version "1.7.22"
     id("com.diffplug.spotless") version "6.11.0"
     id("org.jetbrains.dokka") version "1.7.20"
     application
