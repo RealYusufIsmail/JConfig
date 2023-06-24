@@ -22,14 +22,21 @@ import io.github.realyusufismail.jconfig.classes.JConfigBuilder
 import io.github.realyusufismail.jconfig.classes.JConfigException
 import io.github.realyusufismail.jconfig.classes.JsonEntry
 
-/** Used to get a value from the config.json file. Also creates a new JConfig instance. */
+/** Gets a value from the config.json file. Also creates a new JConfig instance. */
 interface JConfig {
     /**
-     * Used to get all the entries in the config file.
+     * Gets all the entries in the config file.
      *
      * @return A list of all the entries in the config file.
      */
     val entries: Set<JsonEntry>
+
+    /**
+     * Gets a set of JConfigObject with there associated keys.
+     *
+     * @return A set of JConfigObject with there associated keys.
+     */
+    val values: Set<Map.Entry<String, JConfigObject>>
 
     /**
      * Gets the value of the key from the config file.

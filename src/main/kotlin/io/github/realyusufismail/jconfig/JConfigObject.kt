@@ -135,4 +135,11 @@ interface JConfigObject {
      * @return The value as a [JsonEntry].
      */
     val asJsonEntry: JsonEntry
+
+    /**
+     * Parses the value as a String.
+     *
+     * @return The value as a String.
+     */
+    val parseAsString: String
 }

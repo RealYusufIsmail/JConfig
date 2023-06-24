@@ -171,4 +171,16 @@ class JConfigObjectImpl(private val value: Any) : JConfigObject {
 
     override val asJsonEntry: JsonEntry
         get() = value as JsonEntry
+
+
+    override val parseAsString: String
+        get() = when (value) {
+            is String -> value
+            is Number -> value.toString()
+            is Boolean -> value.toString()
+            is Char -> value.toString()
+            is JsonEntry -> value.toString()
+            else -> throw ClassCastException("Cannot cast $value to String")
+        }
+
 }
