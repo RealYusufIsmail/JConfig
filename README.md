@@ -37,7 +37,7 @@ And thats it for getting the token.
 <dependency>
     <groupId>io.github.realyusufismail</groupId>
     <artifactId>jconfig</artifactId>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
 </dependency>
 ```
 
@@ -46,12 +46,12 @@ And thats it for getting the token.
 ```groovy
 //kotlin
 dependencies {
-   implementation("io.github.realyusufismail:jconfig:1.0.8")
+   implementation("io.github.realyusufismail:jconfig:1.0.9")
 }
 
 //groovy
 dependencies {
-   implementation "io.github.realyusufismail:jconfig:1.0.8"
+   implementation "io.github.realyusufismail:jconfig:1.0.9"
 }
 ```
 

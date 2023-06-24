@@ -27,13 +27,25 @@ class JConfigImpl(entries: List<JsonEntry>) : JConfig {
     private var mapEntries: Map<String, Any> = HashMap()
     private var jsonEntries: Set<JsonEntry> = HashSet()
 
+
     init {
         this.mapEntries = JsonEntry.toMap(entries)
         jsonEntries = this.mapEntries.map { JsonEntry(it.key, it.value) }.toSet()
+
     }
 
     override val entries: Set<JsonEntry>
         get() = jsonEntries
+
+    override val values: Set<Map.Entry<String, JConfigObject>>
+        get() {
+            val map = HashMap<String, JConfigObject>()
+            for (entry in jsonEntries) {
+                map[entry.key] = get(entry.key)!!
+            }
+            return map.entries
+        }
+
 
     override fun get(key: String): JConfigObject? {
         // mapEntries[key] ?: throw NoSuchElementException("No value present for key: $key")

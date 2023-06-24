@@ -28,6 +28,7 @@ class JConfigBuilder {
     private var extension = ".json"
     private var filename = "config$extension"
     private var directoryPath = "./"
+    private var environmentVariable = false
 
     fun setFilename(filename: String): JConfigBuilder {
         this.filename = filename + extension
@@ -41,6 +42,11 @@ class JConfigBuilder {
 
     fun setDirectoryPath(directoryPath: File): JConfigBuilder {
         this.directoryPath = directoryPath.absolutePath
+        return this
+    }
+
+    fun enableEnvironmentVariable(): JConfigBuilder {
+        this.environmentVariable = true
         return this
     }
 
@@ -73,7 +79,15 @@ class JConfigBuilder {
                 entries.add(JsonEntry(key, value))
             }
 
-            JConfigImpl(entries)
+            val config = JConfigImpl(entries)
+
+            if (environmentVariable) {
+                config.values.forEach { (key, value) ->
+                    System.setProperty(key, value.parseAsString)
+                }
+            }
+
+            config
         } catch (e: IOException) {
             throw JConfigException("Could not read the config file.", e)
         }
