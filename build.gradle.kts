@@ -42,7 +42,7 @@ repositories { mavenCentral() }
 
 dependencies {
     // json
-    api("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.1")
+    api("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.3")
     testImplementation(kotlin("test"))
 }
 
