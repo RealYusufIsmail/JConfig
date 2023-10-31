@@ -37,49 +37,26 @@ class JConfigImpl(entries: List<JsonEntry>) : JConfig {
     override val entries: Set<JsonEntry>
         get() = jsonEntries
 
-    override val values: Set<Map.Entry<String, JConfigObject>>
+    val values: Set<Map.Entry<String, JConfigObject>>
         get() {
             val map = HashMap<String, JConfigObject>()
             for (entry in jsonEntries) {
-                map[entry.key] = get(entry.key)!!
+                map[entry.key] = getAsJConfigObject(entry.key)!!
             }
             return map.entries
         }
 
-
-    override fun get(key: String): JConfigObject? {
+    override fun get(key: String): JsonNode? {
         // mapEntries[key] ?: throw NoSuchElementException("No value present for key: $key")
 
         val value =
             mapEntries[key] ?: throw NoSuchElementException("No value present for key: $key")
 
-        if (value is JsonNode) {
-            return when {
-                value.isInt -> JConfigObjectImpl(value.asInt())
-                value.isLong -> JConfigObjectImpl(value.asLong())
-                value.isDouble -> JConfigObjectImpl(value.asDouble())
-                value.isBoolean -> JConfigObjectImpl(value.asBoolean())
-                value.isTextual -> JConfigObjectImpl(value.asText())
-                value.isArray -> JConfigObjectImpl(value.map { it.asText() })
-                value.isBigDecimal -> JConfigObjectImpl(value.decimalValue())
-                value.isBigInteger -> JConfigObjectImpl(value.bigIntegerValue())
-                value.isFloat -> JConfigObjectImpl(value.floatValue())
-                value.isShort -> JConfigObjectImpl(value.shortValue())
-                value.isBinary -> JConfigObjectImpl(value.binaryValue())
-                value.isObject ->
-                    JConfigObjectImpl(
-                        value.fields().asSequence().map { it.key to it.value.asText() }.toMap())
-                value.isNull -> null
-                else ->
-                    throw JConfigException("The key $key is not a valid type or is not supported")
-            }
+        return if (value is JsonNode) {
+            value
         } else {
-            throw JConfigException("Unknown type: ${value.javaClass}")
+            null
         }
-    }
-
-    override fun get(key: String, defaultValue: Any): JConfigObject {
-        return get(key) ?: JConfigObjectImpl(defaultValue)
     }
 
     override fun set(key: String, value: Any) {

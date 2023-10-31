@@ -18,8 +18,10 @@
  */ 
 package io.github.realyusufismail.jconfig
 
+import com.fasterxml.jackson.databind.JsonNode
 import io.github.realyusufismail.jconfig.classes.JConfigBuilder
 import io.github.realyusufismail.jconfig.classes.JConfigException
+import io.github.realyusufismail.jconfig.classes.JConfigObjectImpl
 import io.github.realyusufismail.jconfig.classes.JsonEntry
 
 /** Gets a value from the config.json file. Also creates a new JConfig instance. */
@@ -32,19 +34,11 @@ interface JConfig {
     val entries: Set<JsonEntry>
 
     /**
-     * Gets a set of JConfigObject with there associated keys.
-     *
-     * @return A set of JConfigObject with there associated keys.
-     */
-    val values: Set<Map.Entry<String, JConfigObject>>
-
-    /**
      * Gets the value of the key from the config file.
      *
      * @param key The key of the value.
-     * @return The value of the key.
      */
-    operator fun get(key: String): JConfigObject?
+    operator fun get(key: String): JsonNode?
 
     /**
      * Gets the value of the key from the config file.
@@ -53,7 +47,30 @@ interface JConfig {
      * @param defaultValue The default value to return if the key does not exist.
      * @return The value of the key.
      */
-    operator fun get(key: String, defaultValue: Any): JConfigObject
+    operator fun get(key: String, defaultValue: Any): Any {
+        return get(key) ?: defaultValue
+    }
+
+    /**
+     * Gets the value of the key from the config file.
+     *
+     * @param key The key of the value.
+     * @return The value of the key.
+     */
+    fun getAsJConfigObject(key: String): JConfigObject? {
+        return get(key)?.let { JConfigObjectImpl(it) }
+    }
+
+    /**
+     * Gets the value of the key from the config file.
+     *
+     * @param key The key of the value.
+     * @param defaultValue The default value to return if the key does not exist.
+     * @return The value of the key.
+     */
+    fun getAsJConfigObject(key: String, defaultValue: Any): Any {
+        return getAsJConfigObject(key) ?: defaultValue
+    }
 
     /**
      * Used to set a value in the config file.

@@ -18,6 +18,7 @@
  */ 
 package io.github.realyusufismail.jconfig
 
+import com.fasterxml.jackson.databind.JsonNode
 import io.github.realyusufismail.jconfig.classes.JsonEntry
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -109,32 +110,18 @@ interface JConfigObject {
     val asDecimal: BigDecimal
 
     /**
-     * Get the value as an [Array] of [JConfigObject].
-     *
-     * @return The value as an [Array] of [JConfigObject].
-     */
-    val asArray: Array<JConfigObject>
-
-    /**
-     * Get the value as a [List] of [JConfigObject].
-     *
-     * @return The value as a [List] of [JConfigObject].
-     */
-    val asList: List<JConfigObject>
-
-    /**
-     * Get the value as a [Map] of [String] and [JConfigObject].
-     *
-     * @return The value as a [Map] of [String] and [JConfigObject].
-     */
-    val asMap: Map<String, JConfigObject>
-
-    /**
      * Get the value as a [JsonEntry].
      *
      * @return The value as a [JsonEntry].
      */
     val asJsonEntry: JsonEntry
+
+    /**
+     * Gets the value as a [JsonNode].
+     *
+     * @return The value as a [JsonNode].
+     */
+    val asJsonNode: JsonNode
 
     /**
      * Parses the value as a String.

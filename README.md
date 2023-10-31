@@ -23,7 +23,9 @@ For example, say you are making a discord bot and you want to store the token in
 2. We know need to get the token, so we will use JConfigUtils which has a standard builder.
 
 ```kotlin
-val token = JConfigUtils.getString("token")
+val token = JConfig.build()
+   .get("token")
+   .asText()
 ```
 
 And thats it for getting the token.
@@ -37,7 +39,7 @@ And thats it for getting the token.
 <dependency>
     <groupId>io.github.realyusufismail</groupId>
     <artifactId>jconfig</artifactId>
-    <version>1.0.9</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -46,12 +48,12 @@ And thats it for getting the token.
 ```groovy
 //kotlin
 dependencies {
-   implementation("io.github.realyusufismail:jconfig:1.0.9")
+   implementation("io.github.realyusufismail:jconfig:1.1.0")
 }
 
 //groovy
 dependencies {
-   implementation "io.github.realyusufismail:jconfig:1.0.9"
+   implementation "io.github.realyusufismail:jconfig:1.1.0"
 }
 ```
 

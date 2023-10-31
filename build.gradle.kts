@@ -4,12 +4,12 @@ import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-buildscript { dependencies { classpath("org.jetbrains.dokka:dokka-base:1.7.20") } }
+buildscript { dependencies { classpath("org.jetbrains.dokka:dokka-base:1.9.10") } }
 
 plugins {
-    kotlin("jvm") version "1.7.21"
-    id("com.diffplug.spotless") version "6.11.0"
-    id("org.jetbrains.dokka") version "1.7.20"
+    kotlin("jvm") version "1.9.10"
+    id("com.diffplug.spotless") version "6.22.0"
+    id("org.jetbrains.dokka") version "1.9.10"
     application
     `maven-publish`
     signing
@@ -20,7 +20,7 @@ extra.apply {
     set("name", "JConfig")
     set("description", "Json Configurations used to store tokens and other sensitive data")
     set("group", "io.github.realyusufismail")
-    set("version", "1.0.8")
+    set("version", "1.1.0")
     set("dev_id", "yusuf")
     set("dev_name", "Yusuf Ismail")
     set("dev_email", "yusufgamer222@gmail.com")

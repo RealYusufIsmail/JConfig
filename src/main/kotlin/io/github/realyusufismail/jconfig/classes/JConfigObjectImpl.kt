@@ -18,169 +18,129 @@
  */ 
 package io.github.realyusufismail.jconfig.classes
 
+import com.fasterxml.jackson.databind.JsonNode
 import io.github.realyusufismail.jconfig.JConfigObject
 import java.math.BigDecimal
 import java.math.BigInteger
 
-class JConfigObjectImpl(private val value: Any) : JConfigObject {
+class JConfigObjectImpl(private val value: JsonNode
+) : JConfigObject {
 
     override val asString: String
         get() {
-            if (value is String) {
-                return value
+            if (value.isTextual) {
+                return value.asText()
             } else {
-                throw ClassCastException("Cannot cast ${value::class.java} to String")
+                throw ClassCastException("Cannot get $value as String")
             }
         }
 
     override val asInt: Int
         get() {
-            if (value is Int) {
-                return value
+            if (value.isInt) {
+                return value.asInt()
             } else {
-                throw ClassCastException("Cannot cast $value to Int")
+                throw ClassCastException("Cannot get $value as Int")
             }
         }
 
     override val asBigInt: BigInteger
         get() {
-            if (value is BigInteger) {
-                return value
+            if (value.isBigInteger) {
+                return value.bigIntegerValue()
             } else {
-                throw ClassCastException("Cannot cast $value to BigInteger")
+                throw ClassCastException("Cannot get $value as BigInteger")
             }
         }
 
     override val asDouble: Double
         get() {
-            if (value is Double) {
-                return value
+            if (value.isDouble) {
+                return value.asDouble()
             } else {
-                throw ClassCastException("Cannot cast $value to Double")
+                throw ClassCastException("Cannot get $value as Double")
             }
         }
 
     override val asBoolean: Boolean
         get() {
-            if (value is Boolean) {
-                return value
+            if (value.isBoolean) {
+                return value.asBoolean()
             } else {
-                throw ClassCastException("Cannot cast $value to Boolean")
+                throw ClassCastException("Cannot get $value as Boolean")
             }
         }
 
     override val asByte: Byte
         get() {
-            if (value is Byte) {
-                return value
+            if (value.isBinary) {
+                return value.binaryValue()[0]
             } else {
-                throw ClassCastException("Cannot cast $value to Byte")
+                throw ClassCastException("Cannot get $value as Byte")
             }
         }
 
     override val asShort: Short
         get() {
-            if (value is Short) {
-                return value
+            if (value.isShort) {
+                return value.shortValue()
             } else {
-                throw ClassCastException("Cannot cast $value to Short")
+                throw ClassCastException("Cannot get $value as Short")
             }
         }
 
     override val asLong: Long
         get() {
-            if (value is Long) {
-                return value
+            if (value.isLong) {
+                return value.asLong()
             } else {
-                throw ClassCastException("Cannot cast $value to Long")
+                throw ClassCastException("Cannot get $value as Long")
             }
         }
 
     override val asFloat: Float
         get() {
-            if (value is Float) {
-                return value
+            if (value.isFloat) {
+                return value.floatValue()
             } else {
-                throw ClassCastException("Cannot cast $value to Float")
+                throw ClassCastException("Cannot get $value as Float")
             }
         }
 
     override val asChar: Char
         get() {
-            if (value is Char) {
-                return value
+            if (value.isTextual && value.asText().length == 1) {
+                return value.asText()[0]
             } else {
-                throw ClassCastException("Cannot cast $value to Char")
+                throw ClassCastException("Cannot get $value as Char")
             }
         }
 
     override val asNumber: Number
         get() {
-            if (value is Number) {
-                return value
+            if (value.isNumber) {
+                return value.numberValue()
             } else {
-                throw ClassCastException("Cannot cast $value to Number")
+                throw ClassCastException("Cannot get $value as Number")
             }
         }
 
     override val asDecimal: BigDecimal
         get() {
-            if (value is BigDecimal) {
-                return value
+            if (value.isBigDecimal) {
+                return value.decimalValue()
             } else {
-                throw ClassCastException("Cannot cast $value to BigDecimal")
-            }
-        }
-
-    override val asArray: Array<JConfigObject>
-        get() {
-            if (value is Array<*>) {
-                return value
-                    .map { it?.let { it1 -> JConfigObjectImpl(it1) } ?: JConfigObjectImpl("") }
-                    .toTypedArray()
-            } else {
-                throw ClassCastException("Cannot cast $value to Array")
-            }
-        }
-
-    override val asList: List<JConfigObject>
-        get() {
-            if (value is List<*>) {
-                return value.map {
-                    it?.let { it1 -> JConfigObjectImpl(it1) } ?: JConfigObjectImpl("")
-                }
-            } else {
-                throw ClassCastException("Cannot cast $value to List")
-            }
-        }
-
-    override val asMap: Map<String, JConfigObject>
-        get() {
-            if (value is Map<*, *>) {
-                return value
-                    .map {
-                        it.key.toString() to
-                            (it.value?.let { it1 -> JConfigObjectImpl(it1) }
-                                ?: JConfigObjectImpl(""))
-                    }
-                    .toMap()
-            } else {
-                throw ClassCastException("Cannot cast $value to Map")
+                throw ClassCastException("Cannot get $value as BigDecimal")
             }
         }
 
     override val asJsonEntry: JsonEntry
-        get() = value as JsonEntry
+        get() = JsonEntry("", value)
 
+    override val asJsonNode: JsonNode
+        get() = value
 
     override val parseAsString: String
-        get() = when (value) {
-            is String -> value
-            is Number -> value.toString()
-            is Boolean -> value.toString()
-            is Char -> value.toString()
-            is JsonEntry -> value.toString()
-            else -> throw ClassCastException("Cannot cast $value to String")
-        }
+        get() = value.toString()
 
 }

@@ -8,9 +8,8 @@ Supporting both Kotlin and Java.
 
 For example, say you are making a discord bot and you want to store the token in a json file, you can do this:
 
-Firstly, we need to create a config.json file in the root of your project. If you want you can change the files name,
-but I will shows you how to do it with the default name.
-<br>
+1. create a config.json file in the root of your project. If you want you can change the files name, but I will shows
+   you how to do it with the default name.
 
 ```json
 {
@@ -18,14 +17,14 @@ but I will shows you how to do it with the default name.
 }
 ```
 
-Secondly, we know need to get the token, so we will use JConfigUtils which has a standard builder.
-<br>
+2. We know need to get the token, so we will use JConfigUtils which has a standard builder.
 
 ```kotlin
-val token = JConfigUtils.getString("token")
+val token = JConfig.build()
+   .get("token")
+   .asText()
 ```
 
-<br>
 And thats it for getting the token.
 
 ## Installation
@@ -37,7 +36,7 @@ And thats it for getting the token.
 <dependency>
     <groupId>io.github.realyusufismail</groupId>
     <artifactId>jconfig</artifactId>
-    <version>1.0.9</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -46,11 +45,11 @@ And thats it for getting the token.
 ```groovy
 //kotlin
 dependencies {
-    implementation("io.github.realyusufismail:jconfig:1.0.9")
+   implementation("io.github.realyusufismail:jconfig:1.1.0")
 }
 
 //groovy
 dependencies {
-    implementation "io.github.realyusufismail:jconfig:1.0.9"
+   implementation "io.github.realyusufismail:jconfig:1.1.0"
 }
 ```
