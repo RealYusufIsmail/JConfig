@@ -30,25 +30,17 @@ class JConfigBuilder {
     private var directoryPath = "./"
     private var environmentVariable = false
 
-    fun setFilename(filename: String): JConfigBuilder {
-        this.filename = filename + extension
-        return this
-    }
 
+    /**
+     * Sets the directory path of the config file.
+     *
+     * @param directoryPath The directory path of the config file.
+     */
     fun setDirectoryPath(directoryPath: String): JConfigBuilder {
         this.directoryPath = directoryPath
         return this
     }
 
-    fun setDirectoryPath(directoryPath: File): JConfigBuilder {
-        this.directoryPath = directoryPath.absolutePath
-        return this
-    }
-
-    fun enableEnvironmentVariable(): JConfigBuilder {
-        this.environmentVariable = true
-        return this
-    }
 
     @Throws(JConfigException::class)
     fun build(): JConfig {
@@ -56,9 +48,13 @@ class JConfigBuilder {
 
         if (!File(directoryPath).exists()) {
             throw JConfigException("Directory path does not exist!")
-        } else if (!File(directoryPath, filename).exists()) {
-            throw JConfigException("File does not exist!")
         }
+
+        if (!File(directoryPath).isDirectory) {
+            throw JConfigException("Directory path is not a directory!")
+        }
+
+
         if (!filename.endsWith(extension)) {
             throw JConfigException("JConfig only supports JSON files!")
         }
@@ -70,6 +66,11 @@ class JConfigBuilder {
         }
 
         val json = File(directoryPath + filename)
+
+        if (!json.exists()) {
+            throw JConfigException("Config file does not exist!")
+        }
+
         return try {
             val root = mapper.readTree(json)
             val entries: MutableList<JsonEntry> = ArrayList()
