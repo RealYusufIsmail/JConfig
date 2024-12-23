@@ -4,7 +4,7 @@ import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-buildscript { dependencies { classpath("org.jetbrains.dokka:dokka-base:1.9.10") } }
+buildscript { dependencies { classpath("org.jetbrains.dokka:dokka-base:2.0.0") } }
 
 plugins {
     kotlin("jvm") version "1.9.10"
